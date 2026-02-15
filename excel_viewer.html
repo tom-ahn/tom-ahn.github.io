@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spreadsheet Viewer</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.5; color: #222; margin: 0; }
+    header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; padding: 14px 18px; z-index: 10; }
+    .wrap { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 18px; margin: 0 0 6px 0; word-break: break-word; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    select, button, a.btn { padding: 8px 10px; border: 1px solid #ccc; border-radius: 10px; background: #fff; font-size: 14px; }
+    a.btn { text-decoration: none; color: #0b57d0; }
+    a.btn:hover { text-decoration: underline; }
+    .meta { font-size: 13px; color: #666; }
+    main { padding: 18px; }
+    #status { font-size: 14px; color: #666; margin: 8px 0 16px 0; }
+    .table-wrap { overflow: auto; border: 1px solid #eee; border-radius: 14px; padding: 10px; }
+    /* SheetJS' generated table uses inline attributes; these help readability */
+    table { border-collapse: collapse; width: max-content; min-width: 100%; }
+    td, th { border: 1px solid #ddd; padding: 6px 8px; font-size: 13px; vertical-align: top; }
+    th { position: sticky; top: 0; background: #fafafa; z-index: 2; }
+    .error { color: #b00020; }
+    .small { font-size: 12px; color: #777; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1 id="title">Spreadsheet Viewer</h1>
+      <div class="row">
+        <label class="meta" for="sheetSelect">Sheet:</label>
+        <select id="sheetSelect" aria-label="Select sheet"></select>
+        <a id="downloadLink" class="btn" href="#" target="_blank" rel="noopener noreferrer">Download .xlsx</a>
+        <a class="btn" href="spreadsheets.html">All spreadsheets</a>
+      </div>
+      <div class="meta" id="meta"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="status">Loading…</div>
+    <div class="table-wrap" id="tableWrap" style="display:none;"></div>
+    <div class="small">Note: very large sheets can take a moment to render in the browser.</div>
+  </main>
+
+  <script>
+    const ALLOWED_FILES = ["actualexpectedgrades.xlsx","altinstrument.xlsx","basedata.xlsx","bootstrap_params.xlsx","bpref.xlsx","bstartbundled.xlsx","bundleddata.xlsx","bundledse.xlsx","bundled_structural_param.xlsx","choicesetevolution.xlsx","effortparams.xlsx","effortraw.xlsx","effort_data.xlsx","enrl_order.xlsx","estimates_joint_threetype_cap.xlsx","estimates_joint_threetype_start.xlsx","estimates_joint_threetype_start_wfp.xlsx","estimates_joint_threetype_wfp.xlsx","evaluation_class.xlsx","GEgrade3results.xlsx","GEgrade3results_noeff.xlsx","GEgrade3results_noeffld.xlsx","GEgrade3results_nu2.xlsx","GEgrade3start_noeff.xlsx","GEgrade3start_noeffld.xlsx","GEtables_effort.xlsx","GEtables_noeff.xlsx","GE_counterfacts_data_sort.xlsx","gridderiv.xlsx","gridderivact.xlsx","instructorrank.xlsx","multisemevaluation.xlsx","numbers.xlsx","PENoGrades.xlsx","PEresults.xlsx","PE_counterfacts_data.xlsx","profdecomp.xlsx","profprefs.xlsx","profreduced.xlsx","profresults.xlsx","robustresults.xlsx","room_capacity.xlsx","student_data.xlsx","super_list.xlsx","t12.xlsx","t4.xlsx","tables_1to4.xlsx","tables_6to14.xlsx","tables_appB.xlsx","tables_appD.xlsx"];
+
+    function getParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    function setStatus(msg, isError=false) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = isError ? 'error' : '';
+    }
+
+    function safeFileName(file) {
+      // Only allow exact matches from the whitelist to prevent path traversal.
+      return ALLOWED_FILES.includes(file) ? file : null;
+    }
+
+    
+    const BASE_DIRS = ['.', 'xlsx', 'excel', 'data', 'spreadsheets'];
+
+    async function tryFetch(path) {
+      const res = await fetch(path, { cache: 'no-cache' });
+      if (!res.ok) return null;
+      const buf = await res.arrayBuffer();
+      return { buf, path };
+    }
+
+    async function loadWorkbook(file) {
+      // Try common folder names first (so you can keep spreadsheets organized),
+      // then fall back to the same directory as this HTML file.
+      const candidates = BASE_DIRS.map(d => (d === '.' ? file : `${d}/${file}`));
+      for (const path of candidates) {
+        const hit = await tryFetch(path);
+        if (hit) {
+          const wb = XLSX.read(hit.buf, { type: 'array' });
+          return { wb, resolvedPath: hit.path };
+        }
+      }
+      throw new Error(`Could not find "${file}" in any of: ${candidates.join(', ')}`);
+    }
+
+    function renderSheet(workbook, sheetName) {
+      const ws = workbook.Sheets[sheetName];
+      const html = XLSX.utils.sheet_to_html(ws, {
+        id: "sheetTable",
+        editable: false
+      });
+      const wrap = document.getElementById('tableWrap');
+      wrap.innerHTML = html;
+      wrap.style.display = '';
+    }
+
+    (async function init() {
+      const requested = getParam('file');
+      const file = safeFileName(requested);
+
+      if (!file) {
+        document.getElementById('title').textContent = 'Spreadsheet Viewer';
+        setStatus('Invalid or missing file parameter.', true);
+        document.getElementById('meta').textContent = 'Open from the spreadsheet list page to ensure the filename is valid.';
+        return;
+      }
+
+      document.getElementById('title').textContent = file;
+      document.getElementById('downloadLink').href = file; // may be overwritten if found in a subfolder
+
+      try {
+        setStatus('Loading workbook…');
+        const { wb, resolvedPath } = await loadWorkbook(file);
+        document.getElementById('downloadLink').href = resolvedPath;
+
+        const sheetSelect = document.getElementById('sheetSelect');
+        sheetSelect.innerHTML = '';
+        for (const name of wb.SheetNames) {
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.textContent = name;
+          sheetSelect.appendChild(opt);
+        }
+
+        const initial = wb.SheetNames[0];
+        document.getElementById('meta').textContent = `Sheets: ${wb.SheetNames.length}`;
+        setStatus('Rendering…');
+        renderSheet(wb, initial);
+        setStatus(`Showing "${initial}"`);
+
+        sheetSelect.addEventListener('change', () => {
+          const name = sheetSelect.value;
+          setStatus(`Rendering "${name}"…`);
+          renderSheet(wb, name);
+          setStatus(`Showing "${name}"`);
+        });
+
+      } catch (err) {
+        console.error(err);
+        setStatus(err.message || 'Failed to load spreadsheet.', true);
+      }
+    })();
+  </script>
+</body>
+</html>
