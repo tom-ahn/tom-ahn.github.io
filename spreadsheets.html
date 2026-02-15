@@ -1,111 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Spreadsheets</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.5; color: #222; max-width: 900px; margin: 40px auto; padding: 0 20px; }
-    h1 { margin: 0 0 6px 0; }
-    .sub { color: #555; margin: 0 0 18px 0; }
-    .toolbar { display: flex; gap: 10px; align-items: center; margin: 18px 0; }
-    input[type="search"] { flex: 1; padding: 10px 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px; }
-    .hint { font-size: 13px; color: #666; }
-    ul { padding-left: 18px; }
-    li { margin: 6px 0; }
-    a { color: #0b57d0; text-decoration: none; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    h1 { margin: 0 0 10px; font-size: 22px; }
+    .note { color: #666; font-size: 13px; margin-bottom: 14px; }
+    ul { line-height: 1.8; }
+    a { text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .footer { margin-top: 24px; font-size: 13px; color: #666; }
-    .pill { display:inline-block; padding:2px 8px; border:1px solid #ddd; border-radius:999px; font-size:12px; color:#555; }
   </style>
 </head>
 <body>
   <h1>Spreadsheets</h1>
-  <p class="sub">Click a file name to open a new page that renders the spreadsheet in your browser.</p>
-
-  <div class="toolbar">
-    <input id="filter" type="search" placeholder="Filter by filename…" aria-label="Filter by filename" />
-    <span class="pill" id="count">50 files</span>
-  </div>
-  <p class="hint">Tip: links open in a new tab.</p>
-
-  <ul id="fileList">
-            <li><a href="excel_viewer.html?file=actualexpectedgrades.xlsx" target="_blank" rel="noopener noreferrer">actualexpectedgrades.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=altinstrument.xlsx" target="_blank" rel="noopener noreferrer">altinstrument.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=basedata.xlsx" target="_blank" rel="noopener noreferrer">basedata.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bootstrap_params.xlsx" target="_blank" rel="noopener noreferrer">bootstrap_params.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bpref.xlsx" target="_blank" rel="noopener noreferrer">bpref.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bstartbundled.xlsx" target="_blank" rel="noopener noreferrer">bstartbundled.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bundleddata.xlsx" target="_blank" rel="noopener noreferrer">bundleddata.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bundledse.xlsx" target="_blank" rel="noopener noreferrer">bundledse.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=bundled_structural_param.xlsx" target="_blank" rel="noopener noreferrer">bundled_structural_param.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=choicesetevolution.xlsx" target="_blank" rel="noopener noreferrer">choicesetevolution.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=effortparams.xlsx" target="_blank" rel="noopener noreferrer">effortparams.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=effortraw.xlsx" target="_blank" rel="noopener noreferrer">effortraw.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=effort_data.xlsx" target="_blank" rel="noopener noreferrer">effort_data.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=enrl_order.xlsx" target="_blank" rel="noopener noreferrer">enrl_order.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=estimates_joint_threetype_cap.xlsx" target="_blank" rel="noopener noreferrer">estimates_joint_threetype_cap.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=estimates_joint_threetype_start.xlsx" target="_blank" rel="noopener noreferrer">estimates_joint_threetype_start.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=estimates_joint_threetype_start_wfp.xlsx" target="_blank" rel="noopener noreferrer">estimates_joint_threetype_start_wfp.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=estimates_joint_threetype_wfp.xlsx" target="_blank" rel="noopener noreferrer">estimates_joint_threetype_wfp.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=evaluation_class.xlsx" target="_blank" rel="noopener noreferrer">evaluation_class.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3results.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3results.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3results_noeff.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3results_noeff.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3results_noeffld.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3results_noeffld.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3results_nu2.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3results_nu2.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3start_noeff.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3start_noeff.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEgrade3start_noeffld.xlsx" target="_blank" rel="noopener noreferrer">GEgrade3start_noeffld.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEtables_effort.xlsx" target="_blank" rel="noopener noreferrer">GEtables_effort.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GEtables_noeff.xlsx" target="_blank" rel="noopener noreferrer">GEtables_noeff.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=GE_counterfacts_data_sort.xlsx" target="_blank" rel="noopener noreferrer">GE_counterfacts_data_sort.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=gridderiv.xlsx" target="_blank" rel="noopener noreferrer">gridderiv.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=gridderivact.xlsx" target="_blank" rel="noopener noreferrer">gridderivact.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=instructorrank.xlsx" target="_blank" rel="noopener noreferrer">instructorrank.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=multisemevaluation.xlsx" target="_blank" rel="noopener noreferrer">multisemevaluation.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=numbers.xlsx" target="_blank" rel="noopener noreferrer">numbers.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=PENoGrades.xlsx" target="_blank" rel="noopener noreferrer">PENoGrades.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=PEresults.xlsx" target="_blank" rel="noopener noreferrer">PEresults.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=PE_counterfacts_data.xlsx" target="_blank" rel="noopener noreferrer">PE_counterfacts_data.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=profdecomp.xlsx" target="_blank" rel="noopener noreferrer">profdecomp.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=profprefs.xlsx" target="_blank" rel="noopener noreferrer">profprefs.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=profreduced.xlsx" target="_blank" rel="noopener noreferrer">profreduced.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=profresults.xlsx" target="_blank" rel="noopener noreferrer">profresults.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=robustresults.xlsx" target="_blank" rel="noopener noreferrer">robustresults.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=room_capacity.xlsx" target="_blank" rel="noopener noreferrer">room_capacity.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=student_data.xlsx" target="_blank" rel="noopener noreferrer">student_data.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=super_list.xlsx" target="_blank" rel="noopener noreferrer">super_list.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=t12.xlsx" target="_blank" rel="noopener noreferrer">t12.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=t4.xlsx" target="_blank" rel="noopener noreferrer">t4.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=tables_1to4.xlsx" target="_blank" rel="noopener noreferrer">tables_1to4.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=tables_6to14.xlsx" target="_blank" rel="noopener noreferrer">tables_6to14.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=tables_appB.xlsx" target="_blank" rel="noopener noreferrer">tables_appB.xlsx</a></li>
-            <li><a href="excel_viewer.html?file=tables_appD.xlsx" target="_blank" rel="noopener noreferrer">tables_appD.xlsx</a></li>
+  <div class="note">Click a filename to open its static HTML view in a new tab.</div>
+  <ul>
+    <li><a href="sheets/actualexpectedgrades.html" target="_blank" rel="noopener">actualexpectedgrades.xlsx</a></li><li><a href="sheets/altinstrument.html" target="_blank" rel="noopener">altinstrument.xlsx</a></li><li><a href="sheets/basedata.html" target="_blank" rel="noopener">basedata.xlsx</a></li><li><a href="sheets/bootstrap_params.html" target="_blank" rel="noopener">bootstrap_params.xlsx</a></li><li><a href="sheets/bpref.html" target="_blank" rel="noopener">bpref.xlsx</a></li><li><a href="sheets/bstartbundled.html" target="_blank" rel="noopener">bstartbundled.xlsx</a></li><li><a href="sheets/bundleddata.html" target="_blank" rel="noopener">bundleddata.xlsx</a></li><li><a href="sheets/bundledse.html" target="_blank" rel="noopener">bundledse.xlsx</a></li><li><a href="sheets/bundled_structural_param.html" target="_blank" rel="noopener">bundled_structural_param.xlsx</a></li><li><a href="sheets/choicesetevolution.html" target="_blank" rel="noopener">choicesetevolution.xlsx</a></li><li><a href="sheets/effortparams.html" target="_blank" rel="noopener">effortparams.xlsx</a></li><li><a href="sheets/effortraw.html" target="_blank" rel="noopener">effortraw.xlsx</a></li><li><a href="sheets/effort_data.html" target="_blank" rel="noopener">effort_data.xlsx</a></li><li><a href="sheets/enrl_order.html" target="_blank" rel="noopener">enrl_order.xlsx</a></li><li><a href="sheets/estimates_joint_threetype_cap.html" target="_blank" rel="noopener">estimates_joint_threetype_cap.xlsx</a></li><li><a href="sheets/estimates_joint_threetype_start.html" target="_blank" rel="noopener">estimates_joint_threetype_start.xlsx</a></li><li><a href="sheets/estimates_joint_threetype_start_wfp.html" target="_blank" rel="noopener">estimates_joint_threetype_start_wfp.xlsx</a></li><li><a href="sheets/estimates_joint_threetype_wfp.html" target="_blank" rel="noopener">estimates_joint_threetype_wfp.xlsx</a></li><li><a href="sheets/evaluation_class.html" target="_blank" rel="noopener">evaluation_class.xlsx</a></li><li><a href="sheets/GEgrade3results.html" target="_blank" rel="noopener">GEgrade3results.xlsx</a></li><li><a href="sheets/GEgrade3results_noeff.html" target="_blank" rel="noopener">GEgrade3results_noeff.xlsx</a></li><li><a href="sheets/GEgrade3results_noeffld.html" target="_blank" rel="noopener">GEgrade3results_noeffld.xlsx</a></li><li><a href="sheets/GEgrade3results_nu2.html" target="_blank" rel="noopener">GEgrade3results_nu2.xlsx</a></li><li><a href="sheets/GEgrade3start_noeff.html" target="_blank" rel="noopener">GEgrade3start_noeff.xlsx</a></li><li><a href="sheets/GEgrade3start_noeffld.html" target="_blank" rel="noopener">GEgrade3start_noeffld.xlsx</a></li><li><a href="sheets/GEtables_effort.html" target="_blank" rel="noopener">GEtables_effort.xlsx</a></li><li><a href="sheets/GEtables_noeff.html" target="_blank" rel="noopener">GEtables_noeff.xlsx</a></li><li><a href="sheets/GE_counterfacts_data_sort.html" target="_blank" rel="noopener">GE_counterfacts_data_sort.xlsx</a></li><li><a href="sheets/gridderiv.html" target="_blank" rel="noopener">gridderiv.xlsx</a></li><li><a href="sheets/gridderivact.html" target="_blank" rel="noopener">gridderivact.xlsx</a></li><li><a href="sheets/instructorrank.html" target="_blank" rel="noopener">instructorrank.xlsx</a></li><li><a href="sheets/multisemevaluation.html" target="_blank" rel="noopener">multisemevaluation.xlsx</a></li><li><a href="sheets/numbers.html" target="_blank" rel="noopener">numbers.xlsx</a></li><li><a href="sheets/PENoGrades.html" target="_blank" rel="noopener">PENoGrades.xlsx</a></li><li><a href="sheets/PEresults.html" target="_blank" rel="noopener">PEresults.xlsx</a></li><li><a href="sheets/PE_counterfacts_data.html" target="_blank" rel="noopener">PE_counterfacts_data.xlsx</a></li><li><a href="sheets/profdecomp.html" target="_blank" rel="noopener">profdecomp.xlsx</a></li><li><a href="sheets/profprefs.html" target="_blank" rel="noopener">profprefs.xlsx</a></li><li><a href="sheets/profreduced.html" target="_blank" rel="noopener">profreduced.xlsx</a></li><li><a href="sheets/profresults.html" target="_blank" rel="noopener">profresults.xlsx</a></li><li><a href="sheets/robustresults.html" target="_blank" rel="noopener">robustresults.xlsx</a></li><li><a href="sheets/room_capacity.html" target="_blank" rel="noopener">room_capacity.xlsx</a></li><li><a href="sheets/student_data.html" target="_blank" rel="noopener">student_data.xlsx</a></li><li><a href="sheets/super_list.html" target="_blank" rel="noopener">super_list.xlsx</a></li><li><a href="sheets/t12.html" target="_blank" rel="noopener">t12.xlsx</a></li><li><a href="sheets/t4.html" target="_blank" rel="noopener">t4.xlsx</a></li><li><a href="sheets/tables_1to4.html" target="_blank" rel="noopener">tables_1to4.xlsx</a></li><li><a href="sheets/tables_6to14.html" target="_blank" rel="noopener">tables_6to14.xlsx</a></li><li><a href="sheets/tables_appB.html" target="_blank" rel="noopener">tables_appB.xlsx</a></li><li><a href="sheets/tables_appD.html" target="_blank" rel="noopener">tables_appD.xlsx</a></li>
   </ul>
-
-  <div class="footer">
-    <a href="index_with_spreadsheets.html">Back to main page</a>
-  </div>
-
-  <script>
-    const filter = document.getElementById('filter');
-    const list = document.getElementById('fileList');
-    const count = document.getElementById('count');
-
-    function updateCount() {
-      const visible = [...list.querySelectorAll('li')].filter(li => li.style.display !== 'none').length;
-      count.textContent = visible + ' file' + (visible === 1 ? '' : 's');
-    }
-
-    filter.addEventListener('input', () => {
-      const q = filter.value.trim().toLowerCase();
-      for (const li of list.querySelectorAll('li')) {
-        const name = li.textContent.toLowerCase();
-        li.style.display = name.includes(q) ? '' : 'none';
-      }
-      updateCount();
-    });
-
-    updateCount();
-  </script>
 </body>
 </html>

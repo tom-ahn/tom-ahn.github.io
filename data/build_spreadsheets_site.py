@@ -154,9 +154,7 @@ def df_to_html_table(df: pd.DataFrame) -> str:
   df2 = df.copy()
   df2 = df2.where(pd.notnull(df2), "")
   df2 = df2.astype(str)
-  # to_html() escapes by default, so no applymap() needed
   return df2.to_html(index=False, header=False, border=0)
-
 
 def render_workbook(xlsx_path: Path, out_path: Path, back_href: str) -> None:
   xls = pd.ExcelFile(xlsx_path, engine="openpyxl")
