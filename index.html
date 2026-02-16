@@ -252,5 +252,31 @@
         </p>
     </footer>
 
+<script data-goatcounter="https://tom-ahn.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+
+    <script>
+document.addEventListener('click', function(e) {
+  var a = e.target && e.target.closest ? e.target.closest('a') : null;
+  if (!a) return;
+
+  var href = a.getAttribute('href') || '';
+  if (!/\.pdf(\?|#|$)/i.test(href)) return;
+
+  // GoatCounter loads async; guard in case it isn't ready yet.
+  if (!window.goatcounter || !window.goatcounter.count) return;
+
+  var url = new URL(href, window.location.href);
+
+  window.goatcounter.count({
+    path:  'pdf' + url.pathname,                 // must not start with "/"
+    title: 'PDF Download: ' + url.pathname.split('/').pop(),
+    event: true,
+  });
+}, true);
+</script>
+
+
+    
 </body>
 </html>
