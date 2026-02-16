@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Dictionary</title>
+  <style>
+:root{
+  --bg:#0b0f17;
+  --card:#111827;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --border:#243042;
+  --accent:#60a5fa;
+  --tablebg:#0f172a;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f7f7fb;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#4b5563;
+    --border:#e5e7eb;
+    --accent:#2563eb;
+    --tablebg:#ffffff;
+  }
+}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.container{max-width:1100px;margin:0 auto;padding:24px;}
+.header{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 18px 12px;}
+.header h1{margin:0 0 6px;font-size:20px;}
+.header p{margin:0;color:var(--muted);}
+.toc{margin:14px 0 0;padding:10px 14px;background:rgba(0,0,0,0.06);border:1px solid var(--border);border-radius:12px;}
+.toc ul{margin:0;padding-left:18px;columns:2;column-gap:24px;}
+@media (max-width:720px){.toc ul{columns:1;}}
+section{margin-top:18px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;}
+section h2{margin:0 0 10px;font-size:16px;}
+.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--tablebg);}
+table{border-collapse:collapse;width:100%;min-width:720px;}
+td{border:1px solid var(--border);padding:6px 8px;vertical-align:top;white-space:normal;}
+tr:nth-child(even) td{background:rgba(0,0,0,0.03);}
+td.hdr{font-weight:700;position:sticky;top:0;background:var(--tablebg);z-index:2;}
+.footer{margin:16px 0 0;color:var(--muted);font-size:12px;}
+.smallbtn{display:inline-block;margin-top:10px;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:rgba(0,0,0,0.05);}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Data Dictionary</h1>
+      <p>Self-contained HTML export from the Excel workbook.</p>
+      <div class="toc">
+        <strong>Sheets</strong>
+        <ul>
+          <li><a href="#admin-data">Admin data</a></li><li><a href="#redux-survey">Redux Survey</a></li>
+        </ul>
+      </div>
+      <a class="smallbtn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top</a>
+    </div>
+    <section id="admin-data">
+<h2>Admin data</h2>
+<div class="table-wrap">
+<table>
+<colgroup>
+<col style="width:127px">
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<tr><td class="hdr">Variable</td><td class="hdr">Min</td><td class="hdr">Max</td><td class="hdr">Description</td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td><td class="hdr"></td></tr>
+<tr><td>fileyear</td><td>2002</td><td>2011</td><td>Year in administrative dataset</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>uic</td><td></td><td></td><td>Unit Indetification Code, the Navy&#x27;s code for identifying units</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>redux</td><td>0</td><td>1</td><td>Indicator for choosing the Redux instead of the High-3 retirement plan</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>male</td><td>0</td><td>1</td><td>Male gender</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>female</td><td>0</td><td>1</td><td>Female gender</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>white</td><td>0</td><td>1</td><td>White race</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>black</td><td>0</td><td>1</td><td>Black race</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>minority</td><td>0</td><td>1</td><td>Minority race</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.0494709</td><td>0.2168563</td></tr>
+<tr><td>single</td><td>0</td><td>1</td><td>Single (not married)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.8667328</td><td>0.3398745</td></tr>
+<tr><td>married</td><td>0</td><td>1</td><td>Married (not single)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.7786376</td><td>0.4151777</td></tr>
+<tr><td>dependents~y</td><td>0</td><td>10</td><td>Number of dependents</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.0884259</td><td>0.2839227</td></tr>
+<tr><td>educ_hs</td><td>0</td><td>1</td><td>Highest education is  a high school degree</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.1329365</td><td>0.3395173</td></tr>
+<tr><td>educ_college</td><td>0</td><td>1</td><td>Highest education is a college degree</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.164418</td><td>0.3706667</td></tr>
+<tr><td>educ_grad</td><td>0</td><td>1</td><td>Hightest education is a graduate degree</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.835582</td><td>0.3706667</td></tr>
+<tr><td>peer_red_cnt</td><td>1</td><td>686</td><td>Number of peers who have made the Redux/High-3 choice</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>2.41713</td><td>1.489788</td></tr>
+<tr><td>peer_red_cnt_dif_uic</td><td>0</td><td>645</td><td>Number of peers who have made the Redux/High-3 choice when stationed at a past UIC</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>afqt_percentile</td><td>0</td><td>99</td><td>Percentile score on the Armed Forces Qualifying Test</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>rank</td><td></td><td></td><td>Personnel rank in the Navy</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>rate</td><td></td><td></td><td>Navy rate for enlisted service members; rates are occupation groups</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_n_quintile</td><td>1</td><td>5</td><td>quintile of the distribution of the number of higher tenure peers who have made the Redux choice</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_mean</td><td>0</td><td>1</td><td>Fraction of peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.6824735</td><td>0.4655295</td></tr>
+<tr><td>peer_mean _officer</td><td>0</td><td>1</td><td>Fraction of officer peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.3175265</td><td>0.4655295</td></tr>
+<tr><td>peer_mean_enlisted</td><td>0</td><td>1</td><td>Fraction of enlisted peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>73.98975</td><td>103.8212</td></tr>
+<tr><td>peer_mean_white</td><td>0</td><td>1</td><td>Fraction of whitepeers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>15120</td><td>0.1221035</td><td>0.1186205</td></tr>
+<tr><td>peer_mean_black</td><td>0</td><td>1</td><td>Fraction of black peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_mean_minority</td><td>0</td><td>1</td><td>Fraction of minorty peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_mean_male</td><td>0</td><td>1</td><td>Fraction of male peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_mean_female</td><td>0</td><td>1</td><td>Fraction of female peers who have chosen Redux</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>peer_mean_dif_uic</td><td>0</td><td>1</td><td>Fraction of peers who have chosen Redux at a past UIC</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
+</section><section id="redux-survey">
+<h2>Redux Survey</h2>
+<div class="table-wrap">
+<table>
+<colgroup>
+<col style="width:147px">
+<col>
+<col>
+<col style="width:266px">
+</colgroup>
+<tr><td class="hdr">Variable</td><td class="hdr">Min</td><td class="hdr">Max</td><td class="hdr">Description</td></tr>
+<tr><td>age</td><td>32</td><td>58</td><td>Age of respondent</td></tr>
+<tr><td>age_at_redux</td><td>30.5</td><td>55.5</td><td>Age at Redux choice</td></tr>
+<tr><td>age_at_reduxsq</td><td>930.25</td><td>3080.25</td><td>Age at Redux choice^2</td></tr>
+<tr><td>agesq</td><td>1024</td><td>3364</td><td>Age of respondent^2</td></tr>
+<tr><td>dependents</td><td>0</td><td>9</td><td>Number of dependents</td></tr>
+<tr><td>educ_aa_to_almostba</td><td>0</td><td>1</td><td>0/1 indicator: education Associate&#x27;s degree to less than Bachelor&#x27;s degree==1, education less than Associate&#x27;s degree==0</td></tr>
+<tr><td>educ_ba</td><td>0</td><td>1</td><td>0/1 indicator: education Bachelor&#x27;s degree==1, education less than Bachelor&#x27;s degree==0</td></tr>
+<tr><td>educ_hs_to_almostaa</td><td>0</td><td>1</td><td>0/1 indicator: education HS to less than Associate&#x27;s degree==1, education less than HS==0</td></tr>
+<tr><td>educ_ma_above</td><td>0</td><td>1</td><td>0/1 indicator: education Master&#x27;s degree or above==1, education less than Master&#x27;s degree==0</td></tr>
+<tr><td>enlisted</td><td>0</td><td>1</td><td>0/1 indicator: Navy enlisted sailor==1, not Navy  enlisted sailor==0</td></tr>
+<tr><td>female</td><td>0</td><td>1</td><td>0/1 indicator: female==1, not female==0</td></tr>
+<tr><td>fin_condition</td><td>0</td><td>1</td><td>0/1 indicator: Financially comfortable, never to almost never have trouble making ends meet==1, Occasionally to often cannot make ends meet==0</td></tr>
+<tr><td>finalwgt</td><td>0</td><td>35.47304</td><td>Final Weight with NR/Post-Start adjustment</td></tr>
+<tr><td>married</td><td>0</td><td>1</td><td>0/1 indicator: married==1, not married==0</td></tr>
+<tr><td>mil_lgv_pay</td><td>15</td><td>21</td><td>Years of Service</td></tr>
+<tr><td>navy</td><td>1</td><td>1</td><td>0/1 indicator: Navy servicemember==1, not Navy servicemember==0</td></tr>
+<tr><td>nstrat</td><td>1027</td><td>26881</td><td>Number in population</td></tr>
+<tr><td>officer</td><td>0</td><td>1</td><td>0/1 indicator: Navy commissioned officer==1, not Navy  commissioned officer==0</td></tr>
+<tr><td>random</td><td>31501</td><td>998000000</td><td>Random ID number</td></tr>
+<tr><td>redux_combat</td><td>0</td><td>1</td><td>0/1 indicator: Redux decision made while deployed in combat zone==1, Redux decision made while not deployed in combat zone==0</td></tr>
+<tr><td>redux_know_20yr</td><td>0</td><td>1</td><td>0/1 indicator: Knew at time of plan selection that with 20 YOS, Redux pays 40% and High-3 pays 50% of base pay==1, Did not know at time of plan selection==0</td></tr>
+<tr><td>redux_know_30yr</td><td>0</td><td>1</td><td>0/1 indicator: Knew at time of plan selection that with 30 YOS, Redux and High-3 pays equally==1, Did not know at time of plan selection==0</td></tr>
+<tr><td>redux_know_age62</td><td>0</td><td>1</td><td>0/1 indicator: Knew at time of plan selection Redux increases to match payouts with High-3 at age 62==1, Did not know at time of plan selection==0</td></tr>
+<tr><td>redux_know_cpi</td><td>0</td><td>1</td><td>0/1 indicator: Knew at time of plan selection Redux has 1pp lower inflation adjustment==1, Did not know at time of plan selection==0</td></tr>
+<tr><td>redux_regret</td><td>0</td><td>1</td><td>0/1 indicator: Feel that selecting retirement option was a mistake==1, Feel that selecting retirement option was not a mistake==0</td></tr>
+<tr><td>redux_took</td><td>0</td><td>1</td><td>0/1 indicator: Selected Redux retirement plan==1, Selected High-3 retirement plan==0</td></tr>
+<tr><td>redux_use_business</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to start a business==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>redux_use_carboat</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to pay for a vehicle==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>redux_use_college</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to pay for college education==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>redux_use_debt</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to pay down (non-mortgage) debts==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>redux_use_homedp</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to pay for a mortgage==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>redux_use_invest</td><td>0</td><td>1</td><td>0/1 indicator: Redux bonus was used to invest==1, Redux bonus was not used for this purpose==0</td></tr>
+<tr><td>saving_habit</td><td>0</td><td>1</td><td>0/1 indicator: Save paycheck regulary, according to financial plan==1, Do not save paycheck or deposit residual==0</td></tr>
+<tr><td>strat</td><td>3</td><td>12</td><td>Stratum</td></tr>
+<tr><td>white</td><td>0</td><td>1</td><td>0/1 indicator: white==1, not white==0</td></tr>
+<tr><td>yrs_since_redux</td><td>0.5</td><td>6.5</td><td>Years since Redux choice</td></tr>
+<tr><td>yrs_since_reduxsq</td><td>0.25</td><td>42.25</td><td>Years since Redux choice^2</td></tr>
+</table>
+</div>
+</section>
+    <div class="footer">Generated from data_dictionary_ahncunhaveith.xlsx. No external files required.</div>
+  </div>
+</body>
+</html>
