@@ -1,0 +1,12 @@
+{
+  "name": "tom-ahn-academic-prototype",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static academic website generated from section records.",
+  "scripts": {
+    "build": "python3 scripts/render-content.py",
+    "check": "python3 scripts/render-content.py --check",
+    "test": "python3 -m unittest discover -s tests",
+    "watch": "python3 scripts/watch-content.py"
+  }
+}

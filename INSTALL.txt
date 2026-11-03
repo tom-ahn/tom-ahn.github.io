@@ -1,0 +1,51 @@
+INSTALL THE REDESIGN AND AUTOMATIC UPDATES
+
+This download now contains ONE upload folder. There are no website/ and source/
+folders to combine. If you already uploaded the earlier website files, keep
+them; the matching page/style/script files in this download are identical.
+
+1. UNZIP THE UPDATED DOWNLOAD
+   Open the extracted folder. You should see index.html, proposed.css,
+   proposed.js, dist/, templates/, scripts/, tests/, and .github/.
+
+2. UPLOAD ITS CONTENTS TO YOUR EXISTING REPOSITORY
+   In https://github.com/tom-ahn/tom-ahn.github.io, open the Code tab and the
+   main branch. Upload all the files/folders INSIDE the extracted folder to the
+   top level, beside your existing papers/ and sheets/ folders, and commit.
+   Do not upload the extracted outer folder as a new subfolder.
+   Keep existing PDFs and supporting pages in place. If you have not already
+   done so, rename the old homepage to index_old.html before replacing it.
+   Confirm that .github/workflows/site.yml appears in the repository.
+
+3. SELECT GITHUB ACTIONS FOR PUBLISHING
+   Repository Settings > Pages > Build and deployment > Source:
+   select GitHub Actions.
+
+4. ENABLE THIS SITE'S PUBLISHING WORKFLOW
+   Settings > Secrets and variables > Actions > Variables tab:
+   click New repository variable.
+   Name: PUBLISH_PUBLIC_SITE
+   Value: true
+   Click Add variable. Use a VARIABLE, not a secret. This is an on/off setting,
+   not a password or token.
+
+5. RUN THE FIRST UPDATE
+   Open Actions > Build academic website > Run workflow.
+   Select main, then click Run workflow. Wait for both build and deploy to
+   finish successfully, then open https://tom-ahn.github.io/.
+
+AFTER THIS ONE-TIME SETUP
+
+To add or change a publication, edit dist/content.json in GitHub and commit.
+Use the items list for the appropriate section. Counts update automatically.
+For a downloadable published paper, upload the PDF to papers/ and record its
+URL/path in the entry. Leave working-paper download links empty.
+Record order is page order; no date-based sorting is performed.
+
+The build preserves existing PDFs, sheets, standalone supporting HTML pages,
+and index_old.html at their existing URLs. It checks same-site homepage links
+and stops before deployment if a linked file would be missing.
+
+The prepared automatic publishing workflow is disabled until you complete
+steps 3-5 yourself. Creating this download has not uploaded anything to GitHub
+or changed the public site.
