@@ -28,7 +28,7 @@ class ContentBuildTests(unittest.TestCase):
 
     def counts(self, page):
         navigation = dict(re.findall(r'href="#([a-z-]+)"><span>[^<]+</span><span class="nav-count">(\d+)</span>', page))
-        headings = dict(re.findall(r'<section id="([a-z-]+)".*?<span class="section-count">(\d+)</span>', page))
+        headings = dict(re.findall(r'<section id="([a-z-]+)".*?<span class="section-count">(\d+)</span>', page, re.S))
         return navigation, headings
 
     def test_each_section_accepts_a_new_record_and_updates_both_counts(self):
