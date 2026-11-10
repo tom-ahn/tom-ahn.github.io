@@ -1,6 +1,7 @@
 """Build static pages from the section records in dist/content.json."""
 
 import argparse
+from datetime import date
 import html
 import json
 from pathlib import Path
@@ -84,6 +85,10 @@ def render_template(template, sections):
         items = records[sid]
         if kind == 'count':
             return str(len(items))
+        if sid == 'working-papers':
+            # Working papers are actively maintained: a blank year shows the year the page was built.
+            current_year = str(date.today().year)
+            items = [dict(item, year=item.get('year', '').strip() or current_year) for item in items]
         return ''.join(render_entry(item, sid == 'media') for item in items)
 
     result = TOKEN.sub(replace, template)
