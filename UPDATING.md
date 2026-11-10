@@ -53,7 +53,6 @@ Equivalent shortcuts are `npm run build`, `npm test`, and `npm run check`. There
 The build generates both `dist/proposed.html` and the comparison workspace's `dist/index.html` from `templates/`. It updates all section counts and the total automatically. It never edits `dist/current.html`. Bad JSON, missing sections, or working-paper download links fail the build before either generated page is changed.
 
 ## GitHub publishing setup
-
-Follow INSTALL.txt for the one-time setup. The files in this download are already arranged for upload to the top level of the existing repository. Keep existing PDFs, sheets, supplementary pages and index_old.html in place; the public build carries them forward.
+Keep existing PDFs, sheets and supplementary pages in place; the public build carries them forward at their current addresses. Superseded CVs and the old homepage are kept in archive/, which the public build does not publish; do not move them back into papers/ or the top level. To update the CV, upload the new version to papers/ as TomAhn-CV.pdf, replacing the existing file, and save a dated copy (for example TomAhn-CV_Jan27.pdf) in archive/.
 
 After setup, edit dist/content.json in GitHub and commit. Upload published PDFs to papers/ (or dist/papers/) and use their paths in the record. The workflow rebuilds the entries and counts automatically, then checks same-site links before publishing. Working-paper download links remain prohibited.
